@@ -10,7 +10,7 @@
 連線成功後，如果發現之後又連不上了，可能是因為自己 IP 位址有變，必須要再重新加入新的 IP 到授權網路，並修改 GUI 連線資訊，再次連線。
 
 ### 專案設定檔修正:
-本專案設定檔皆已拔除私密資訊，需要依照自己 cloud SQL 和 secret 的資訊修正設定黨
+本專案設定檔皆已拔除私密資訊，需要依照自己 cloud SQL 和 secret 的資訊修正設定檔
 
 ### 服務帳戶、使用者帳戶授權:
 程式端要串接各項GCP 服務，需要Credential 有對應的 Permission，
@@ -20,11 +20,11 @@ Permission而不是直接綁在使用者身上。
 
 #### 服務帳戶授權:
 使用者需要帶有 `Service Account Token Creator` 的IAM 角色，
-服務帳戶需帶有GCP 服務對應的存取角色。
+服務帳戶需帶有GCP 服務對應的存取角色。(例如本專案就需要 secret manager 和 cloud SQL 權限)
 
 再透過以下Command 存取服務帳號類型的 Credential
-`gcloud auth application-default login --impersonate-service-account SERVICE_ACCT_EMAIL` 
-
+`gcloud auth application-default login --impersonate-service-account SERVICE_ACCT_EMAIL`
+SERVICE_ACCT_EMAIL 需帶入自己的服務帳戶信箱
 
 ### 參考資料:
 [从 Cloud Shell 连接到 Cloud SQL for PostgreSQL](https://cloud.google.com/sql/docs/postgres/connect-instance-cloud-shell?hl=zh-cn)
