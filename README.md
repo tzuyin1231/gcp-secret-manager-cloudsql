@@ -13,6 +13,18 @@
 本專案設定檔皆已拔除私密資訊，需要依照自己 cloud SQL 和 secret 的資訊修正設定黨
 
 ### 服務帳戶、使用者帳戶授權:
+程式端要串接各項GCP 服務，需要Credential 有對應的 Permission，
+現行 Credential 有兩種類型，使用者帳號或是服務帳號。
+根據現行GCP IAM 官方推行的設計模式，希望使用者是透過服務帳戶去存取
+Permission而不是直接綁在使用者身上。
+
+#### 服務帳戶授權:
+使用者需要帶有 `Service Account Token Creator` 的IAM 角色，
+服務帳戶需帶有GCP 服務對應的存取角色。
+
+再透過以下Command 存取服務帳號類型的 Credential
+`gcloud auth application-default login --impersonate-service-account SERVICE_ACCT_EMAIL` 
+
 
 ### 參考資料:
 [从 Cloud Shell 连接到 Cloud SQL for PostgreSQL](https://cloud.google.com/sql/docs/postgres/connect-instance-cloud-shell?hl=zh-cn)
