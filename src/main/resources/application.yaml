@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: # jdbc:postgresql://[cloud SQL 公開ip]/[cloud SQL DB名]
+    username: # postgres (資料庫使用者名稱)
+    password: # ${sm://[secret 資源名稱]} (secret 資源名稱，可以於secret的密鑰詳細資料找到，格式: /projects/000000000000/secrets/ooooo)
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  cloud:
+    gcp:
+      sql:
+        database-name: # guestbook (cloud SQL DB名)
+        instance-connection-name: # (cloud SQL 連線名稱，格式為 projectID:地區:cloud SQL名稱 )
+  config:
+    import: sm://
+
